@@ -1,6 +1,9 @@
 import React from 'react';
 import uuidv1 from 'uuid/v1';
 // import logo from './logo.svg';
+
+import firebase, { auth, provider } from './firebase.js';
+
 import './App.css';
 import BigList from './components/BigList/BigList';
 import BalanceSums from './components/BalanceSums/BalanceSums';
@@ -30,49 +33,126 @@ class App extends React.Component {
         // this.handleChange = this.handleChange.bind(this);
         this.state = {
             data: [...testData],
-            user: 'michael'
+            items: [],
+            user: null
         };
         console.log("Uuid:", uuidv1());
     }
 
+    componentDidMount() {
+        const itemsRef = firebase.database().ref('items');
+        itemsRef.on('value', (snapshot) => {
+            let items = snapshot.val();
+            let newState = [];
+            for (let item in items) {
+                if(items.hasOwnProperty(item)){
+                    newState.push({
+                        id: item,
+                        date: items[item].date,
+                        user: items[item].user,
+                        item: items[item].item,
+                        cost: items[item].cost
+                    });
+                }
+            }
+            this.setState({...this.state,
+                items: newState
+            });
+        });
+
+        auth.onAuthStateChanged((user) => {
+            if (user) {
+                this.setState({ user });
+            }
+        });
+
+    }
+
+
+
     handleAddEntry = (date, expense, cost) => {
-        let newList = [...this.state.data,
-            {
-                id: uuidv1(),
-                date: date,
-                user: this.state.user,
-                item: expense,
-                cost: parseFloat(cost)
-            }];
-        this.setState({...this.state, data:newList})
+
+        const newItem = {
+            id: uuidv1(),
+            date: Math.round(new Date().getTime()/1000),
+            user: this.state.user,
+            item: expense,
+            cost: parseFloat(cost)
+        };
+
+        const itemsRef = firebase.database().ref('items');
+        itemsRef.push(newItem);
+
+        // this.setState({...this.state, data:newList})
     };
 
     handleRemoveEntry = (id) => {
-        console.log(id.toString(), this.state.data);
+        // console.log(id.toString(), this.state.data);
+        //
+        // const targetUser = this.state.data.filter(item => item.id === id)[0].user;
+        // if (this.state.user === targetUser){
+        //     let newList = this.state.data.filter(item => item.id !== id);
+        //     this.setState({...this.state, data:newList});
+        // }
 
-        const targetUser = this.state.data.filter(item => item.id === id)[0].user;
-        if (this.state.user === targetUser){
-            let newList = this.state.data.filter(item => item.id !== id);
-            this.setState({...this.state, data:newList});
-        }
+        const itemRef = firebase.database().ref(`/items/${id}`);
+        itemRef.remove(); // Then confirm success or fail
     };
 
+
+    logout() {
+        auth.signOut()
+        .then(() => {
+            this.setState({
+                user: null
+            });
+        });
+    }
+    login() {
+        auth.signInWithPopup(provider)
+            .then((result) => {
+                const user = result.user;
+                this.setState({...this.state,
+                    user
+                });
+            });
+    }
+
+
+
     render() {
+        console.log("Data", this.state.data);
+        console.log("Items", this.state.items);
         return (
             <div className="App">
                 <header className="App-header">
                     The Pool
+
+                    {this.state.user ?
+                        <button onClick={this.logout.bind(this)}>Log Out</button>
+                        :
+                        <button onClick={this.login.bind(this)}>Log In</button>
+                    }
                 </header>
-                <div className="App-content">
-                    <BigList data={this.state.data}
-                             addEntry={this.handleAddEntry.bind(this)}
-                             removeEntry={this.handleRemoveEntry.bind(this)}
-                             user={this.state.user}
-                    />
-                    <BalanceSums
-                        data={this.state.data}
+
+                { this.state.user ?
+                    <div className="App-content">
+                        <BigList data={this.state.items}
+                                 addEntry={this.handleAddEntry.bind(this)}
+                                 removeEntry={this.handleRemoveEntry.bind(this)}
+                                 user={this.state.user}
                         />
-                </div>
+                        <BalanceSums
+                            data={this.state.items}
+                        />
+                    </div>
+                    :
+                    <p>
+                        <p>Ya needa log in!</p>
+                    </p>
+
+                }
+
             </div>
         );
     }

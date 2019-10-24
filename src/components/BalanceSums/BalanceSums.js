@@ -31,10 +31,14 @@ const BalanceSums = (props) => {
     return (
         <div className="BalanceSums">
             <div>Total: {total}</div>
-            <div>Per Person: {perPerson}</div>
+            <div>Per Person: {perPerson.toFixed(2)}</div>
 
             {Object.keys(bSums).map( k =>
-                <div>User: {k} Total: {bSums[k]} Diff: {bSums[k] - perPerson} </div>
+                <div key={k}>
+                    User: {k}
+                    Total: {bSums[k]}
+                    Diff: {(bSums[k] - perPerson).toFixed(2)}
+                </div>
             )}
 
         </div>

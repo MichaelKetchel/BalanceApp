@@ -53,7 +53,7 @@ class BigList extends React.Component {
                     <tbody>
                     {this.props.data.map((item) =>
                         <tr key={item.id}>
-                            <td>{format_date(item.date)}</td>
+                            <td>{format_date(new Date(item.date * 1000))}</td>
                             <td>{item.user}</td>
                             <td>{item.item}</td>
                             <td>${item.cost.toFixed(2)}</td>
