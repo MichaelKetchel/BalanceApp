@@ -28,6 +28,10 @@ with 5 others? Yeah, we wanna support that.
 
 * Design a prettier UI
 * Design some nice graphs
+* Popup/toast notifications.
+* Unit Tests
+* Add prop checking.
+* Maybe use redux for some internal state. Or just keep it in Firebase.
 * Concept of a group "Owner" with more powers than regular users
 * Export/Import data (as an owner)
 * Optional anonymous display of other user's contributions, so you stop worrying about how much Steve has pitched in.
@@ -35,7 +39,11 @@ with 5 others? Yeah, we wanna support that.
 * Support taking pictures of receipts and associating them with entries
 * Categories!
 * React-Native build/support
-* Maybe move away from Firebase someday?
+* Maybe move away from Firebase someday? Mongo? Meteor?
+
+
+## Nifty Resources
+* Useful tutorial for react-native-web: https://scotch.io/tutorials/build-mobile-friendly-web-apps-with-react-native-web
 
 ---
 Lovingly made by eMKode and CJKetchel

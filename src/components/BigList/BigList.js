@@ -9,7 +9,6 @@ function format_date(date){
 class BigList extends React.Component {
     constructor(props) {
         super(props);
-        // this.handleChange = this.handleChange.bind(this);
         this.state = {
             expenseName: '',
             cost: ''
@@ -21,20 +20,24 @@ class BigList extends React.Component {
             expenseName:event.target.value
         });
     };
+
     handleCostChange = (event) => {
         this.setState({...this.state,
             cost:event.target.value
         });
     };
+
     handleSubmit = (event, a, b) => {
         event.preventDefault();
         // Optionally allow to set date.
         this.props.addEntry(new Date(), this.state.expenseName, this.state.cost);
         console.log(event, a, b, event.target);
     };
+
     handleRemove = (id) => {
-        console.log("remhandler",id)
+        this.props.removeEntry(id);
     };
+
     render() {
         return (
             <div className="BigList">
@@ -57,11 +60,10 @@ class BigList extends React.Component {
                             <td>{item.user}</td>
                             <td>{item.item}</td>
                             <td>${item.cost.toFixed(2)}</td>
-                            {/*<td><button onClick={this.handleRemove.bind(this,item.id)}>x</button></td>*/}
                             <td>
 
                                 {(this.props.user === item.user) ?
-                                    <button onClick={this.props.removeEntry.bind(this, item.id)}>x</button>
+                                    <button onClick={this.handleRemove.bind(this, item.id)}>x</button>
                                     :''
                                 }
                             </td>
