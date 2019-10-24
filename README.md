@@ -15,27 +15,34 @@ So that's what we're doing. Building that app, and adding features we think will
 larger groups. Imagine being able to tell at a glance who in your group has pitched in what? You live in an apartment
 with 5 others? Yeah, we wanna support that.
 
+I also really missed coding in React, so there's my other reason.
+
 ## Goals
 
 * Be able to tell who has contributed what at a glance.
 * Be able to intuitively support 2 to 10 or more people while still having a function UI
 * Support a single user being involved in multiple "groups" for whatever purposes you might need them for.
-* Eventually be a truely progressive web app, with support for home-screen installs and offline caching of actions.
+* Eventually be a truly progressive web app, with support for home-screen installs and offline caching of actions.
 * Make fewer Venmo transactions.
 * Stay in Balance.
 
 ## To-Do
 
 * Design a prettier UI
+  * User Photos by expenses?
+  * Shortened Names?
 * Design some nice graphs
+  * Over/under bar graph to show contributions relative to average per-person.
 * Popup/toast notifications.
 * Unit Tests
 * Add prop checking.
 * Maybe use redux for some internal state. Or just keep it in Firebase.
-* Concept of a group "Owner" with more powers than regular users
+* Concept of a group "Owner" with more powers than regular users.
+* Maybe some concept of being able to add a user partway through and not have them inherit responsibility for previous balance?
+  * This may involve requiring a "true-up" to exempt them.
 * Export/Import data (as an owner)
 * Optional anonymous display of other user's contributions, so you stop worrying about how much Steve has pitched in.
-* Logic to find "zero-points" so  that you don't have to go waaaay back to the beginning for calculations.
+* Logic to find "zero-points" so that you don't have to go waaaay back to the beginning for calculations.
 * Support taking pictures of receipts and associating them with entries
 * Categories!
 * React-Native build/support
@@ -44,7 +51,7 @@ with 5 others? Yeah, we wanna support that.
 
 ## Nifty Resources
 * Useful tutorial for react-native-web: https://scotch.io/tutorials/build-mobile-friendly-web-apps-with-react-native-web
-
+* Drop dead guide for using Firebase in React: https://css-tricks.com/intro-firebase-react/
 ---
 Lovingly made by eMKode and CJKetchel
 
