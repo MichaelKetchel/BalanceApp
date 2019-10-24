@@ -1,0 +1,14 @@
+import firebase from 'firebase'
+const firebaseConfig = {
+    apiKey: "asdfasdf",
+    authDomain: "asdfasdf.firebaseapp.com",
+    databaseURL: "https://asdfasdf.firebaseio.com",
+    projectId: "asdfasdf",
+    storageBucket: "asdfasdf.appspot.com",
+    messagingSenderId: "1111111",
+    appId: "asdfasdf"
+};
+firebase.initializeApp(firebaseConfig);
+export const provider = new firebase.auth.GoogleAuthProvider();
+export const auth = firebase.auth();
+export default firebase;
