@@ -1,68 +1,42 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# The Balance App
 
-## Available Scripts
+This is the code-home of the Balance App--part refresher project, part everyday tool.
 
-In the project directory, you can run:
+## The story
+My brother and I live together, and as a result, many times find ourselves making shopping trips. While not sticklers
+about it, we do like to keep our expenditures relatively balanced and fair, and manually zipping half the total back
+and forth via Venmo or the like gets old fast, and complicates the checkbook.
 
-### `yarn start`
+We decided it'd be neat if we had an  app where we could just log who bought what, and letit automatically determine
+our mutual "balance" so we always know who ought to buy groceries tonight. I'm a full-stack developer, and he's a
+graphic designer, so we decided that since we didn't know of such an app, we should make one!
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+So that's what we're doing. Building that app, and adding features we think will make it useful to others, and for
+larger groups. Imagine being able to tell at a glance who in your group has pitched in what? You live in an apartment
+with 5 others? Yeah, we wanna support that.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+## Goals
 
-### `yarn test`
+* Be able to tell who has contributed what at a glance.
+* Be able to intuitively support 2 to 10 or more people while still having a function UI
+* Support a single user being involved in multiple "groups" for whatever purposes you might need them for.
+* Eventually be a truely progressive web app, with support for home-screen installs and offline caching of actions.
+* Make fewer Venmo transactions.
+* Stay in Balance.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## To-Do
 
-### `yarn build`
+* Design a prettier UI
+* Design some nice graphs
+* Concept of a group "Owner" with more powers than regular users
+* Export/Import data (as an owner)
+* Optional anonymous display of other user's contributions, so you stop worrying about how much Steve has pitched in.
+* Logic to find "zero-points" so  that you don't have to go waaaay back to the beginning for calculations.
+* Support taking pictures of receipts and associating them with entries
+* Categories!
+* React-Native build/support
+* Maybe move away from Firebase someday?
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+---
+Lovingly made by eMKode and CJKetchel
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
