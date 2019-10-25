@@ -1,0 +1,53 @@
+@import "../../variables.scss";
+
+
+.Home {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+
+  .FriendlySummary {
+    font-size: 25pt;
+    color: black;
+
+
+    .TotalText, .Even {
+      color: $green;
+      font-weight: bolder;
+
+      &.Ahead { color: $green; }
+      &.Behind { color: $red; }
+
+    }
+  }
+
+
+  .BarGraph {
+    height: 100px;
+    width: 100vw;
+    background-color: $gray;
+  }
+
+
+  .ButtonBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    button {
+      @include button-base;
+
+      background-color: $blue;
+      height: 70px;
+      width:200px;
+
+      &.Settings{
+        border-top-right-radius: 30px;
+
+      }
+      &.More{
+        border-top-left-radius: 30px;
+      }
+    }
+  }
+}

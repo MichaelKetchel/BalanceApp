@@ -1,0 +1,21 @@
+$primaryColor: #BADA55;
+
+$green: rgb(0, 191, 0);
+$red: rgb(193, 39, 45);
+$blue: rgb(75, 75, 255);
+$gray: rgb(150,150,150);
+$darkgray: rgb(75, 75, 75);
+//
+//Green (0, 191, 0)
+//Red (193, 39, 45)
+//Blue (75, 75, 255)
+//Gray (150, 150, 150)
+//Dark Gray (75, 75, 75)
+
+
+@mixin button-base {
+  color: white;
+  //border-radius: 10px;
+  border-width: 0;
+  font-size: 15pt;
+}

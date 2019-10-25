@@ -1,0 +1,39 @@
+@import "../../variables.scss";
+
+.LoginComponent {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Droid Sans", Arial, Helvetica, sans-serif;
+
+  .WelcomeTo, .Balance, .SignInButton {
+    flex-grow: 0;
+    margin-bottom: 20px;
+  }
+
+  .WelcomeTo {
+
+    color: $blue;
+    font-size: 25pt;
+
+  }
+
+  .Balance {
+    color: black;
+    font-size: 50pt;
+    font-weight: bolder;
+  }
+
+  .SignInButton {
+    color: white;
+    background-color: $green;
+    border-radius: 10px;
+    border-width: 0;
+    height: 50px;
+    width: 185px;
+    font-size: 15pt;
+  }
+}
