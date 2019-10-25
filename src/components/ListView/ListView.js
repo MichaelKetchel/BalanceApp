@@ -1,18 +1,13 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
+import './ListView.scss';
 import BigList from "../BigList/BigList";
 import BalanceSums from "../BalanceSums/BalanceSums";
 
 class ListView extends Component {
     render() {
         return (
-            <div>
-                {/*{this.state.user ?*/}
-                {/*    <button onClick={this.logout.bind(this)}>Log Out</button>*/}
-                {/*    :*/}
-                {/*    <button onClick={this.login.bind(this)}>Log In</button>*/}
-                {/*}*/}
-
+            <div className="ListView">
                 <BigList data={this.props.items}
                          addEntry={this.addEntry}
                          removeEntry={this.removeEntry}
@@ -21,6 +16,9 @@ class ListView extends Component {
                 <BalanceSums
                     data={this.props.items}
                 />
+                <div className="ButtonBar">
+                    <button className="Home" onClick={this.props.gotoHomeView}>Home</button>
+                </div>
             </div>
         );
     }
@@ -29,6 +27,7 @@ class ListView extends Component {
 ListView.propTypes = {
     addEntry: PropTypes.func.isRequired,
     removeEntry: PropTypes.func.isRequired,
+    gotoHomeView: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
     items: PropTypes.array.isRequired
 };

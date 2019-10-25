@@ -1,0 +1,31 @@
+@import "../../variables.scss";
+
+.ListView {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+
+  .BigList {
+    flex-grow: 1;
+  }
+
+  .ButtonBar {
+    flex-grow: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    button {
+      @include button-base;
+
+      background-color: $blue;
+      height: 70px;
+      width:200px;
+
+      &.Home{
+        border-top-right-radius: 30px;
+
+      }
+    }
+  }
+}

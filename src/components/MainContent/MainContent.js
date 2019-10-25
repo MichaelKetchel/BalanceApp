@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import firebase from "../../firebase";
-import Home from "../Home/Home";
+import HomeView from "../HomeView/HomeView";
 import ListView from "../ListView/ListView";
 
 class MainContent extends Component {
@@ -9,7 +9,7 @@ class MainContent extends Component {
         super(props);
         this.state = {
             items: [],
-            activePage: 'Home'
+            activePage: 'HomeView'
         };
 
     }
@@ -57,17 +57,24 @@ class MainContent extends Component {
         itemRef.remove(); // TODO: Then confirm success or fail with a popup? (.remove() returns a promise)
     };
 
+    gotoListView = () => {
+        this.setState({...this.state, activePage:'ListView'});
+    }
+    gotoHomeView = () => {
+        this.setState({...this.state, activePage:'HomeView'});
+    }
+
     render() {
         return (
             <div className="MainContent">
 
-                { (this.props.user !== null && this.state.activePage === "Home") &&
-                    <Home addEntry={this.doAddEntry} removeEntry={this.doRemoveEntry}
-                          user={this.props.user} items={this.state.items} />}
+                { (this.props.user !== null && this.state.activePage === "HomeView") &&
+                    <HomeView addEntry={this.doAddEntry} removeEntry={this.doRemoveEntry}
+                          user={this.props.user} items={this.state.items} gotoListView={this.gotoListView} />}
 
                 { (this.props.user !== null && this.state.activePage === "ListView") &&
                     <ListView addEntry={this.doAddEntry} removeEntry={this.doRemoveEntry}
-                              user={this.props.user} items={this.props.items} />}
+                              user={this.props.user} items={this.state.items} gotoHomeView={this.gotoHomeView} />}
             </div>
         );
     }

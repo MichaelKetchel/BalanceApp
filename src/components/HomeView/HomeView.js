@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import './Home.scss';
+import './HomeView.scss';
 
 const Home = (props) => {
     const diff=5.00;
     return (
-        <div className="Home">
+        <div className="HomeView">
 
 
             <div className="GroupSelection">
@@ -40,7 +40,7 @@ const Home = (props) => {
 
             <div className="ButtonBar">
                 <button className="Settings">Gear</button>
-                <button className="More">Ellipses</button>
+                <button className="More" onClick={props.gotoListView}>Ellipses</button>
             </div>
         </div>
     );
@@ -49,7 +49,8 @@ const Home = (props) => {
 
 Home.propTypes = {
     user: PropTypes.object.isRequired,
-    items: PropTypes.array.isRequired
+    items: PropTypes.array.isRequired,
+    gotoListView: PropTypes.func.isRequired
 };
 
 export default Home;
