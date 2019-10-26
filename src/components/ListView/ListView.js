@@ -9,9 +9,10 @@ class ListView extends Component {
         return (
             <div className="ListView">
                 <BigList data={this.props.items}
-                         addEntry={this.addEntry}
-                         removeEntry={this.removeEntry}
+                         addEntry={this.props.addEntry}
+                         removeEntry={this.props.removeEntry}
                          user={this.props.user}
+                         users={this.props.users}
                 />
                 <BalanceSums
                     data={this.props.items}
@@ -29,6 +30,7 @@ ListView.propTypes = {
     removeEntry: PropTypes.func.isRequired,
     gotoHomeView: PropTypes.func.isRequired,
     user: PropTypes.object.isRequired,
+    users: PropTypes.object.isRequired,
     items: PropTypes.array.isRequired
 };
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import './BigList.css';
+import './BigList.scss';
 
 function format_date(date){
     return date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate()
@@ -39,6 +39,7 @@ class BigList extends React.Component {
     };
 
     render() {
+        const {data, user,users} = this.props;
         return (
             <div className="BigList">
                 I am the big List
@@ -54,15 +55,22 @@ class BigList extends React.Component {
                         </tr>
                     </thead>
                     <tbody>
-                    {this.props.data.map((item) =>
+                    {data.map((item) =>
                         <tr key={item.id}>
                             <td>{format_date(new Date(item.date * 1000))}</td>
-                            <td>{item.user}</td>
+                            <td>
+                                <div className="Profile" >
+                                    <img alt={"Picture of "+users[item.uid].displayName} src={users[item.uid].photoURL}/>
+                                    <div className="UserName">
+                                        {users[item.uid].displayName}
+                                    </div>
+                                </div>
+                            </td>
                             <td>{item.item}</td>
                             <td>${item.cost.toFixed(2)}</td>
                             <td>
 
-                                {(this.props.user === item.user) ?
+                                {(user.uid === item.uid) ?
                                     <button onClick={this.handleRemove.bind(this, item.id)}>x</button>
                                     :''
                                 }

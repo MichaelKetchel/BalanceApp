@@ -3,7 +3,32 @@ import PropTypes from 'prop-types';
 import './HomeView.scss';
 
 const Home = (props) => {
-    const diff=5.00;
+
+    const {items, user} = props;
+
+    let bSums = {};
+    let total = 0;
+
+    // Aggregate Costs
+    for (let rownum in items){
+        if(items.hasOwnProperty(rownum)){
+            let row = items[rownum];
+            // Initialize if unseen.
+            if (!(row.uid in bSums))
+                bSums[row.uid] = 0;
+            bSums[row.uid] += row.cost;
+        }
+    }
+
+    // Get total
+    for (let uid in bSums){
+        if (bSums.hasOwnProperty(uid)){
+            total += bSums[uid];
+        }
+    }
+    const perPerson = total/Object.keys(bSums).length;
+
+    const diff= bSums[user.uid] - perPerson;
     return (
         <div className="HomeView">
 
@@ -25,7 +50,7 @@ const Home = (props) => {
                     <div className="Even">In Balance!</div>
                     :
                     <div className="Uneven">
-                        <div className={'TotalText ' + (diff > 0 ? 'Ahead' : 'Behind')} >${diff.toFixed(2)}</div>
+                        <div className={'TotalText ' + (diff > 0 ? 'Ahead' : 'Behind')} >${Math.abs(diff).toFixed(2)}</div>
                         <div>
                             { diff > 0 ? "Ahead" : "Behind" }
                         </div>
@@ -37,7 +62,7 @@ const Home = (props) => {
             <div className="BarGraph">
                 I'm gonna be a pretty bar graph
             </div>
-
+            {props.children}
             <div className="ButtonBar">
                 <button className="Settings">Gear</button>
                 <button className="More" onClick={props.gotoListView}>Ellipses</button>

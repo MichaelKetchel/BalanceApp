@@ -5,6 +5,7 @@ import './App.scss';
 
 import Login from "./components/Login/Login";
 import MainContent from "./components/MainContent/MainContent";
+import firebase from "./firebase";
 
 
 class App extends React.Component {
@@ -18,9 +19,16 @@ class App extends React.Component {
         // Bind to auth state on Firebase to persist across refreshes and reloads
         auth.onAuthStateChanged((user) => {
             if (user) {
-                this.setState({ user });
+                this.storeFirebaseUser(user);
+                this.setState({ user: user.providerData[0] });
             }
         });
+    };
+
+    storeFirebaseUser = (user) => {
+        const pdata = user.providerData[0];
+        const usersRef = firebase.database().ref('users');
+        usersRef.child(pdata.uid.toString()).set(pdata);
     };
 
     // Handles logging out
@@ -39,8 +47,10 @@ class App extends React.Component {
             .then((result) => {
                 const user = result.user;
                 this.setState({...this.state,
-                    user
+                    user: user.providerData[0]
                 });
+                this.storeFirebaseUser(user);
+
             });
     };
 
@@ -50,7 +60,8 @@ class App extends React.Component {
 
                 { this.state.user ?
                     // Logged in
-                    <MainContent onLogout={this.doLogout} user={this.state.user}/>
+                    <MainContent doLogout={this.doLogout} user={this.state.user}>
+                    </MainContent>
                     :
                     // Logged out
                     <Login onLogin={this.doLogin}/>
